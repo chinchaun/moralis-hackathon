@@ -7,7 +7,7 @@ import { chainId } from '../../wallet/config';
 import { useRouter } from 'next/router';
 import { Wallet, ethers } from "ethers";
 import { useWeb3Auth } from '../../wallet/hooks/useWeb3Auth';
-import { DiscordIcon, GoogleIcon, MetaMaskIcon, PolygonIcon, TwitchIcon } from '../Icons/CustomIcons';
+import { DiscordIcon, GoogleIcon, MetaMaskIcon, MoralisIcon, PolygonIcon, TwitchIcon } from '../Icons/CustomIcons';
 
 const { Meta } = Card;
 const { Text, Title } = Typography;
@@ -19,7 +19,7 @@ const ConnectWalletButton = () => {
   };
 
   return (
-    <Button icon={<MetaMaskIcon/>}  onClick={connectWalletOnClick} type='primary' size='large'> Connect your Wallet to withdraw the NFT </Button>
+    <Button icon={<MetaMaskIcon />} onClick={connectWalletOnClick} type='primary' size='large'> Connect your Wallet to withdraw the NFT </Button>
   )
 };
 
@@ -138,11 +138,20 @@ export const NFTCard = () => {
       {!web3Auth.isLoading && <Button size="large"
         style={{ left: "50%", top: "12%", position: "relative", transform: "translate(-50%,-50%)", width: "355px" }}
         type="primary" onClick={login}><> <TwitchIcon /> <DiscordIcon /> <GoogleIcon /> Log In To withdraw your NFT </></Button>}
-      <div style={{ left: "50%", top: "12%", position: "relative", transform: "translate(-50%,-50%)", width: "290px"}}>
-      <Title level={5}>
-        <> Powered By <PolygonIcon /> </>
-      </Title>
+      <div style={{ left: "50%", top: "20%", position: "relative", transform: "translate(-50%,-50%)", width: "290px" }}>
+        <Title level={5}>
+          <> <MoralisIcon /> </>
+        </Title>
+        <div style={{
+          marginLeft: "35px",
+          marginTop: "-32px"
+        }}>
+        <Title level={5}>
+          <> Built on <PolygonIcon /> </>
+        </Title>
+        </div>
       </div>
+
       {/* {!web3Auth.isLoading && <Button style={{
           left: "50%", top: "12%", position: "relative", transform: "translate(-50%,-50%)"
 
