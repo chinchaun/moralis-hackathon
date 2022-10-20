@@ -1,10 +1,10 @@
 import type { NextPage } from 'next';
 import { Layout} from 'antd';
 import React, { useEffect, useState } from 'react';
-import Navbar from '../components/NavBar';
-import { NFT } from '../components/NFT/NFT';
-import { initWeb3Onboard } from '../wallet/config';
 import { useRouter } from 'next/router';
+import { initWeb3Onboard } from '../../wallet/config';
+import Navbar from '../../components/NavBar';
+import { NFT } from '../../components/NFT/NFT';
 
 const { Content } = Layout;
 
