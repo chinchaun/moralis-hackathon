@@ -25,6 +25,9 @@ a {
   }
 } */
 
+.button-gradient {
+  background: linear-gradient(45deg, #2937f0, #9f1ae2) !important
+}
 
 .trigger {
   padding: 0 24px;
@@ -178,3 +181,33 @@ a {
 }
 
 /* Navbar End */
+
+.gradient-text {
+	/* font-size: 25px; */
+	background: rgb(255, 0, 0);
+	background: -moz-linear-gradient(
+		63deg,
+		rgba(255, 0, 0, 1) 0%,
+		rgba(6, 0, 255, 1) 50%,
+		rgba(207, 0, 255, 1) 90%
+	);
+	background: -webkit-linear-gradient(
+		63deg,
+		rgba(255, 0, 0, 1) 0%,
+		rgba(6, 0, 255, 1) 50%,
+		rgba(207, 0, 255, 1) 90%
+	);
+	background: linear-gradient(
+		63deg,
+		rgba(255, 0, 0, 1) 0%,
+		rgba(6, 0, 255, 1) 50%,
+		rgba(207, 0, 255, 1) 90%
+	);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ff0000",endColorstr="#cf00ff",GradientType=1);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	/* margin-top: 9px; */
+	/* float: left; */
+	cursor: pointer;
+	/* margin: 9px 24px 16px 0; */
+}

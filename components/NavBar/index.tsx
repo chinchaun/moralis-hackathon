@@ -24,7 +24,7 @@ const Navbar = () => {
       <Layout>
         <Layout.Header className="nav-header">
           <div className="logo">
-            <h3 className="brand-font">Pied Piper Money</h3>
+            <h1 style={{ fontSize: "25px"}} className="gradient-text">Pied Piper Money</h1>
           </div>
           {/* <div className="navbar-menu">
             <div className="leftMenu">

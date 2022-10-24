@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import useSWR from 'swr';
+import { INFT } from "../../interfaces/INFT";
 
-const getNFTBalancesFetcher = (params: {
+const getNFTBalancesFetcher = async (params: {
 	address: string;
 	chainId: string;
 }) => {
@@ -19,28 +20,25 @@ const getNFTBalancesFetcher = (params: {
 	const url =
 		`https://deep-index.moralis.io/api/v2/${address}/nft?` +
 		new URLSearchParams({ chain: chainId, format: "decimal" });
-	return fetch(url, request).then((res) => res.json());
-};
+	
+	const res = await fetch(url, request);
+	const data = await res.json();
+	if (data.result[0] && data.result[0].contract_type === "ERC1155") {
+		const nftRes = await fetch(data.result[0].token_uri);
+		const nftData = await nftRes.json();
+		data.result[0].metadata = JSON.stringify(nftData);
+	}
+	return Promise.resolve(data);
 
-export interface INFT {
-	metadata: {
-		name: string;
-		description: string;
-		image: string;
-		external_url?: string;
-	};
-	name: string;
-	symbol: string;
-	token_id: string;
-	token_uri: string;
-	token_address: string;
-}
+	// return fetch(url, request).then((res) => res.json());
+};
 
 export const useGetNFT = () => {
 	const [params, setParams] = useState<{
 		address: string;
 		chainId: string;
 	}>();
+	const [errorWrapper, setErrorWrapper] = useState<Error | any>();
 
 	const { data, error } = useSWR(
 		params
@@ -58,7 +56,10 @@ export const useGetNFT = () => {
 			if (data.total >= 1 && data.status === "SYNCED") {
 				const metadata = JSON.parse(data.result[0].metadata);
 				setNFT({ ...data.result[0], metadata });
-			} else {
+			} else if (data.total === 0) {
+				setErrorWrapper(new Error("EMPTY_WALLET"))
+			}
+			else {
 				setNFT(undefined);
 			}
 		}
@@ -67,6 +68,7 @@ export const useGetNFT = () => {
 	useEffect(() => {
 		if (error) {
 			console.log({ error });
+			setErrorWrapper(error);
 		}
 	}, [error]);
 
@@ -74,6 +76,7 @@ export const useGetNFT = () => {
 		data: nft,
 		isLoading: !error && !nft,
 		isError: error,
+		error: errorWrapper,
 		doGet: setParams,
 	};
 };
