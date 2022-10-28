@@ -1,7 +1,7 @@
-import { Button, Card, Typography } from 'antd';
+import { Button, Card, notification, Typography } from 'antd';
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { useConnectWallet } from "@web3-onboard/react";
+import { useConnectWallet, useSetChain } from "@web3-onboard/react";
 import { useGetNFT } from '../../wallet/hooks/useGetNFT';
 import { chainId, jsonRPCProviderInstance } from '../../wallet/config';
 import { useRouter } from 'next/router';
@@ -68,9 +68,10 @@ export const NFTCard = (props: { onClaimed: () => void }) => {
   const web3Auth = useWeb3Auth();
   const getNFT = useGetNFT();
   const claimNFT = useClaimNFT();
+  const [{ connectedChain }] = useSetChain();
 
   useEffect(() => {
-    setPageWallet(pageWallet.connect(jsonRPCProviderInstance));
+    setPageWallet(p => p.connect(jsonRPCProviderInstance));
   }, []);
 
   useEffect(() => {
@@ -104,6 +105,16 @@ export const NFTCard = (props: { onClaimed: () => void }) => {
 
 
   const onClaimClick = () => {
+
+    if (connectedChain && connectedChain.id !== chainId) {
+      return notification['error']({
+        message: 'Wrong Chain',
+        description: 'Please switch to Polygon Mumbai',
+        placement: 'top',
+        duration: 10,
+      });
+    }
+
     if (!wallet) {
       throw new Error("Wallet not connected");
     }
