@@ -54,17 +54,17 @@ a {
   margin: 16px 24px 16px 0;
   background: rgba(255, 255, 255, 0.3);
 } */
-
+/* 
 .site-layout .site-layout-background {
   background: #fff;
-}
+} */
 
 .layout {
   height: 100vh;
 }
 
 .site-layout .site-layout-background [class~='ant-row'] {
-  background: rgba(128, 128, 128, 0.08);
+  /* background: rgba(128, 128, 128, 0.08); */
   border-color: red;
 }
 

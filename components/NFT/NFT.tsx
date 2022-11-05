@@ -1,4 +1,4 @@
-import { Row, Col, Typography } from "antd"
+import { Row, Col } from "antd"
 import { useState } from "react";
 import { Footer } from "../Footer";
 import { NFTCard } from "./NFTCard";
@@ -8,19 +8,26 @@ export const NFT = () => {
     const [claimed, setClaimed] = useState(false);
 
     return (
-        <Row justify="center" align="top">
-            {!claimed &&
-                <Col span={24} style={{ height: "75vh" }}>
-                    <NFTCard onClaimed={() => setClaimed(true)} />
+        <div
+            style={{
+                height: "75vh",
+                width: 373,
+                left: "50%", top: "50%", position: "relative", transform: "translate(-50%,-50%)"
+            }}>
+            <Row justify="center" align="top">
+                {!claimed &&
+                    <Col span={24} style={{ marginBottom: "20px"}}>
+                        <NFTCard onClaimed={() => setClaimed(true)} />
+                    </Col>
+                }
+                {claimed &&
+                    <Col span={24}>
+                        <NFTClaimed />
+                    </Col>}
+                <Col span={24}>
+                    <Footer />
                 </Col>
-            }
-            {claimed &&
-                <Col span={24} style={{ height: "75vh" }}>
-                    <NFTClaimed />
-                </Col>}
-            <Col span={24}>
-                <Footer />
-            </Col>
-        </Row>
+            </Row>
+        </div>
     )
 }

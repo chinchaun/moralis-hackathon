@@ -21,16 +21,10 @@ export const NFTClaimed = () => {
     return (
         <>
         <Title
-            style={{
-                width: 400,
-                left: "52%", top: "30%",
-                position: "relative",
-                transform: "translate(-50%,-50%)"
-
-        }}>
+        >
             Yay, You go it! <br /> Enjoy your NFT 🥳🎉
             <br />
-            Courtesy of <span className="gradient-text">Pied Piper</span>
+            Courtesy of <br/> <span className="gradient-text">Pied Piper</span>
         </Title>
         <RewardSpan />
     </>

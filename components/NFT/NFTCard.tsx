@@ -141,11 +141,7 @@ export const NFTCard = (props: { onClaimed: () => void }) => {
     <>
       <Card
         loading={getNFT.isLoading}
-        style={{
-          width: 400,
-          left: "50%", top: "40%", position: "relative", transform: "translate(-50%,-50%)"
-
-        }}
+        style={{ marginBottom: "25px"}}
         cover={getNFT.data ?
           <Image
             width="400"
@@ -167,24 +163,6 @@ export const NFTCard = (props: { onClaimed: () => void }) => {
       {!web3Auth.isLoading && !getNFT.isLoading && !wallet &&
         <Web2Login onClick={login} />
       }
-      {/* <div style={{ left: "50%", top: "20%", position: "relative", transform: "translate(-50%,-50%)", width: "290px" }}>
-        <Title level={5}>
-          <> <MoralisIcon /> </>
-        </Title>
-        <div style={{
-          marginLeft: "35px",
-          marginTop: "-32px"
-        }}>
-          <Title level={5}>
-            <> Built on <PolygonIcon /> </>
-          </Title>
-        </div>
-      </div> */}
-
-      {/* {!web3Auth.isLoading && <Button style={{
-          left: "50%", top: "12%", position: "relative", transform: "translate(-50%,-50%)"
-
-        }} type="primary" size="large" onClick={send}> userInfo </Button>} */}
     </>
   )
 }
